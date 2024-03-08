@@ -5,6 +5,8 @@ import com.example.testapirestful.model.Computer;
 import com.example.testapirestful.repository.IComputerRepository;
 import com.example.testapirestful.service.IComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -28,8 +30,8 @@ public class ComputerController {
 
 
     @GetMapping
-    public ResponseEntity<Iterable<Computer>> findAllCustomer() {
-        List<Computer> customers = (List<Computer>) iComputerService.findAll();
+    public ResponseEntity<Page<Computer>> findAllCustomer(Pageable pageable) {
+        Page<Computer> customers = (Page<Computer>) iComputerService.findAll();
         if (customers.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

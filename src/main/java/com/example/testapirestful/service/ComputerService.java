@@ -4,6 +4,8 @@ package com.example.testapirestful.service;
 import com.example.testapirestful.model.Computer;
 import com.example.testapirestful.repository.IComputerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -31,6 +33,11 @@ public class ComputerService implements IComputerService{
     @Override
     public Computer save(Computer computer) {
         return iComputerRepository.save(computer);
+    }
+
+    @Override
+    public Page<Computer> findAll(Pageable pageable) {
+        return iComputerRepository.findAll(pageable);
     }
 
 
